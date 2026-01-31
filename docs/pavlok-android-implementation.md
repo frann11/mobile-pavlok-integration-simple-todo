@@ -83,6 +83,31 @@ PAVLOK_DEVICE_ID=your_device_id
 - Load via `dotenv` (Node) or environment config in your backend framework.
 - Use test tokens and low-intensity defaults in dev.
 
+## Step-by-step development guide (local)
+1. **Clone and open the project.**
+   - Ensure you have Android Studio Flamingo+ and JDK 17 installed.
+2. **Create your local backend folder (example).**
+   - Create a `server/` directory in your workspace (separate from the Android app).
+   - Initialize Node/Express or Firebase Functions per your preference.
+3. **Add your Pavlok credentials to `.env` (backend only).**
+   - Use the sample `.env` above and keep it out of version control.
+4. **Implement a minimal `/zap` endpoint.**
+   - Accept `userId`, `intensity`, `duration`, and `reason`.
+   - Call Pavlok’s API using the access token stored server-side.
+5. **Run the backend locally.**
+   - Confirm `POST /zap` responds with success for a test user/device.
+6. **Configure the Android app for local testing.**
+   - Add a local base URL (e.g., `http://10.0.2.2:3000`) in a build config or local settings screen.
+7. **Build and run the Android app.**
+   - Use Android Studio or Gradle: `./gradlew :app:assembleDebug`.
+8. **Test the end-of-day flow.**
+   - Temporarily set the end-of-day time to a few minutes ahead.
+   - Confirm the WorkManager job fires and hits your backend.
+9. **Verify safety checks.**
+   - Confirm only one zap is triggered per day and that intensity caps apply.
+10. **Iterate on UI and backend logic.**
+   - Add zap history UI, settings, and pairing verification.
+
 ## Habit-building features to consider (high impact)
 1. **Daily intent setting**: Each morning, prompt user to confirm top 3 tasks.
 2. **Streak tracking**: Visual streak for days without zap.
