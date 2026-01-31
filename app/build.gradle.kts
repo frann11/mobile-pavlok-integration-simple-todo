@@ -7,6 +7,9 @@ android {
     namespace = "com.example.pavloktodo"
     compileSdk = 34
 
+    val devBaseUrl = (project.findProperty("PAVLOK_DEV_BASE_URL") as String?)
+        ?: "http://10.0.2.2:3000"
+
     defaultConfig {
         applicationId = "com.example.pavloktodo"
         minSdk = 26
@@ -36,10 +39,25 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.8"
+    }
+
+    flavorDimensions += "brand"
+    productFlavors {
+        create("dev") {
+            dimension = "brand"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            buildConfigField("String", "BACKEND_BASE_URL", "\"$devBaseUrl\"")
+        }
+        create("prod") {
+            dimension = "brand"
+            buildConfigField("String", "BACKEND_BASE_URL", "\"https://api.example.com\"")
+        }
     }
 }
 

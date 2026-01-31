@@ -97,9 +97,11 @@ PAVLOK_DEVICE_ID=your_device_id
 5. **Run the backend locally.**
    - Confirm `POST /zap` responds with success for a test user/device.
 6. **Configure the Android app for local testing.**
-   - Add a local base URL (e.g., `http://10.0.2.2:3000`) in a build config or local settings screen.
+   - Set a dev backend base URL via Gradle property:
+     - In `~/.gradle/gradle.properties` add `PAVLOK_DEV_BASE_URL=http://10.0.2.2:3000`
+     - Or use `local.properties` (not committed) with the same key.
 7. **Build and run the Android app.**
-   - Use Android Studio or Gradle: `./gradlew :app:assembleDebug`.
+   - Use Android Studio or Gradle: `./gradlew :app:assembleDevDebug`.
 8. **Test the end-of-day flow.**
    - Temporarily set the end-of-day time to a few minutes ahead.
    - Confirm the WorkManager job fires and hits your backend.

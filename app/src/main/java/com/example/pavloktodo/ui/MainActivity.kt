@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.pavloktodo.data.AppConfig
 import com.example.pavloktodo.work.ZapCheckScheduler
 
 class MainActivity : ComponentActivity() {
@@ -68,6 +69,13 @@ private fun TodoScreen(viewModel: TodoViewModel) {
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(top = 4.dp, bottom = 16.dp)
         )
+        if (AppConfig.flavor.contains("dev")) {
+            Text(
+                text = "Backend: ${AppConfig.backendBaseUrl}",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
+        }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
