@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "apis": [
+    {
+      "identifier": "pavlok",
+      "source": "@pavlok/v5.0#p2k4b1mltos4gjz",
+      "integrity": "sha512-og75XLiFMNlPY9CEhXu8Lco3nikogXycVGCoTaXw4JWWwXp+9ih0ZNBao2cgjWtbg6dclxH9T5XuM2vtqmWznQ==",
+      "installerVersion": "6.1.3"
+    }
+  ]
+}

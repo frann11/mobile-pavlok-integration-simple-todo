@@ -7,8 +7,7 @@ android {
     namespace = "com.example.pavloktodo"
     compileSdk = 34
 
-    val devBaseUrl = (project.findProperty("PAVLOK_DEV_BASE_URL") as String?)
-        ?: "http://10.0.2.2:3000"
+    val devBaseUrl = "https://api.pavlok.com/"
 
     defaultConfig {
         applicationId = "com.example.pavloktodo"
@@ -52,11 +51,11 @@ android {
             dimension = "brand"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            buildConfigField("String", "BACKEND_BASE_URL", "\"$devBaseUrl\"")
+            buildConfigField("String", "BACKEND_BASE_URL", "\"https://api.pavlok.com/\"")
         }
         create("prod") {
             dimension = "brand"
-            buildConfigField("String", "BACKEND_BASE_URL", "\"https://api.example.com\"")
+            buildConfigField("String", "BACKEND_BASE_URL", "\"https://api.pavlok.com/\"")
         }
     }
 }
@@ -71,6 +70,15 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+    // Network
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // UI and Themes
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
 }
